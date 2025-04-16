@@ -6,13 +6,17 @@
     "passtrough": false,
     "gtk-layer-shell": true,
     "height": 0,
-    "modules-left": [
+//    "modules-left": [
         // "cpu",
         // "memory",
-        "hyprland/workspaces",
-	"wlr/taskbar"
+        // "hyprland/workspaces",
+	// "wlr/taskbar"
+  //  ],
+    "modules-center": [
+	//"hyprland/window",
+   	"hyprland/workspaces",
+        "wlr/taskbar"
     ],
-    "modules-center": ["hyprland/window"],
     "modules-right": [
         "custom/notification",
 	"network",

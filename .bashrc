@@ -7,7 +7,8 @@
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
-alias code="code --enable-features=WaylandWindowDecorations --ozone-platform=wayland"
+alias hyprlock='hyprlock --config ~/.config/hypr/hyprlock/hyprlock.conf'
+#alias code="code --enable-features=WaylandWindowDecorations --ozone-platform=wayland"
 PS1='[\u@\h \W]\$ '
 
 

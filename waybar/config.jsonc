@@ -1,44 +1,47 @@
 {
-  "layer": "top",
-  "position": "top",
-  //"mode": "dock",
-  "exclusive": true,
-  "passtrough": false,
-  "gtk-layer-shell": true,
-  "height": 0,
+  // Positionierung und Verhalten der Waybar
+  "layer": "top", // Leiste liegt im obersten Layer
+  "position": "top", // Leiste am oberen Bildschirmrand
+  //"mode": "dock",                     // Optionaler Dock-Modus (auskommentiert)
+  "exclusive": true, // Reserviert Bildschirmplatz, verhindert Überlappung
+  "passtrough": false, // Mausereignisse werden nicht weitergeleitet
+  "gtk-layer-shell": true, // Unterstützung für gtk-layer-shell
+  "height": 0, // Automatische Höhe
+
+  // Module links in der Leiste
   "modules-left": [
-    // "cpu",
-    // "memory",
-    // "wlr/taskbar"
-    "hyprland/workspaces",
-    "custom/notification"
-  ],
-  "modules-center": [
-    //"hyprland/window",
-    "wlr/taskbar"
-  ],
-  "modules-right": [
-    //"pulseaudio#microphone",
-    //"custom/weather",
-    // "custom/language",
-    "network",
-    "custom/volume",
-    "bluetooth",
-    "custom/brightness",
-    "battery",
-    "clock"
+    "hyprland/workspaces", // Workspaces von Hyprland
+    "custom/notification" // Benachrichtigungen
   ],
 
+  // Zentrierte Module
+  "modules-center": [
+    "wlr/taskbar" // Taskbar in der Mitte
+  ],
+
+  // Rechte Seite mit Systeminformationen
+  "modules-right": [
+    "network", // Netzwerkstatus
+    "custom/volume", // Lautstärkeregelung
+    "bluetooth", // Bluetooth-Status
+    "custom/brightness", // Bildschirmhelligkeit
+    "battery", // Akkustand
+    "clock" // Uhrzeit und Datum
+  ],
+
+  // Fensteranzeige (wenn aktiviert)
   "hyprland/window": {
     "format": "{}"
   },
+
+  // Workspaces von Hyprland mit Scroll- und Klickfunktionen
   "hyprland/workspaces": {
-    "on-scroll-up": "hyprctl dispatch workspace e+1",
-    "on-scroll-down": "hyprctl dispatch workspace e-1",
+    "on-scroll-up": "hyprctl dispatch workspace e+1", // Zum nächsten Workspace
+    "on-scroll-down": "hyprctl dispatch workspace e-1", // Zum vorherigen Workspace
     "all-outputs": true,
     "on-click": "activate",
-    "format": "{icon}",
-    "tooltip-formatmat-icons": {
+    "format": "{icon}", // Nur Icon anzeigen
+    "tooltip-format-icons": {
       "1": "",
       "2": "2",
       "3": "3",
@@ -53,46 +56,17 @@
     "sort-by-number": true
   },
 
+  // Taskbar-Konfiguration
   "wlr/taskbar": {
-    "format": "{icon}",
+    "format": "{icon}", // Nur Icon anzeigen
     "icon-size": 18,
     "spacing": 0,
-    "on-click-middle": "close",
-    "tooltip-format": "{title}",
-    "on-click": "activate"
+    "on-click-middle": "close", // Mittelklick zum Schließen
+    "tooltip-format": "{title}", // Tooltip mit Fenstertitel
+    "on-click": "activate" // Linksklick aktiviert Fenster
   },
 
-  // "cpu": {
-  //     "interval": 10,
-  //     "format": " {}%",
-  //     "max-length": 10,
-  //     "on-click": ""
-  // },
-  // "memory": {
-  //     "interval": 30,
-  //     "format": " {}%",
-  //     "format-alt":" {used:0.1f}G",
-  //     "max-length": 10
-  // },
-  //"custom/updates": {
-  //    "exec": "(paru -Qua) | wc -l",
-  //    "interval": 7200,
-  //    "format": " {}"
-  //},
-  // "custom/language": {
-  //     "exec": "cat /tmp/kb_layout",
-  //     "interval": 3,
-  //     "format": " {}",
-  //     "tooltip": false
-  // },
-  //    "custom/weather" : {
-  //        "tooltip" : true,
-  //        "format" : "{}",
-  //        "restart-interval" : 300,
-  //        "exec" : "~/.config/waybar/scripts/waybar-wttr.py",
-  //        "return-type" : "json"
-  //    },
-
+  // Netzwerkmodul (WiFi, Ethernet, Disconnected)
   "network": {
     "format": "{ifname}",
     "format-wifi": "  {signalStrength}%",
@@ -103,6 +77,7 @@
     "interval": 5
   },
 
+  // Benachrichtigungsmodul für swaync
   "custom/notification": {
     "tooltip": false,
     "format": "{icon}",
@@ -124,6 +99,7 @@
     "escape": true
   },
 
+  // Akkuanzeige mit Zuständen (Normal, Warnung, Kritisch)
   "battery": {
     "states": {
       "warning": 30,
@@ -140,6 +116,7 @@
     "tooltip-format": "{time}"
   },
 
+  // Uhrzeit und Datum
   "clock": {
     "format": "<b> {:%H:%M:%S  %A:%d/%m/%y}</b>",
     "tooltip-format": "{:%A, %d. %B %Y %H:%M:%S}",
@@ -147,6 +124,7 @@
     "interval": 1
   },
 
+  // Lautstärkeanzeige mit eigenem Script
   "custom/volume": {
     "format": "  {text}%",
     "exec": "~/.config/waybar/scripts/volume.sh",
@@ -154,21 +132,21 @@
     "on-click": "~/.config/waybar/scripts/volume_slider.sh",
     "on-scroll-up": "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+",
     "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-    //"exec": "wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print \"   \" $2 * 100 \"%\"}'",
-    //"on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
   },
 
+  // Bluetooth-Modul mit Statusscript
   "bluetooth": {
     "format": " {status}",
     "return-type": "json",
     "exec": "~/.config/waybar/scripts/bluetooth-status.sh",
     "exec-if": "command -v bluetoothctl",
-    "on-click": "blueman-manager", // Öffnet bluetoothctl im Terminal
+    "on-click": "blueman-manager",
     "interval": 5,
     "replace-straight-quotes": true,
     "tooltip": false
   },
 
+  // Bildschirmhelligkeit mit Scrollfunktion
   "custom/brightness": {
     "format": "☀ {}%",
     "exec": "echo $((100 * $(brightnessctl g) / $(brightnessctl m)))",
@@ -177,24 +155,7 @@
     "on-scroll-down": "bash -c 'if [ $(brightnessctl g) -gt $(($(brightnessctl m) * 55 / 100)) ]; then brightnessctl set 5%-; fi'"
   },
 
-  //  "pulseaudio": {
-  //      "format": "{icon} {volume}%",
-  //      "tooltip": false,
-  //      "format-muted": " Muted",
-  //      "on-click": "pipewire",
-  //      "on-scroll-up": "pamixer -i 5",
-  //      "on-scroll-down": "pamixer -d 5",
-  //      "scroll-step": 5,
-  //      "format-icons": {
-  //          "headphone": "",
-  //          "hands-free": "",
-  //          "headset": "",
-  //          "phone": "",
-  //          "portable": "",
-  //          "car": "",
-  //          "default": ["", "", ""]
-  //     }
-  //   },
+  // Mikrofonmodul für Pulseaudio
   "pulseaudio#microphone": {
     "format": "{format_source}",
     "tooltip": false,

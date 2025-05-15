@@ -8,6 +8,7 @@
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias hyprlock='hyprlock --config ~/.config/hypr/hyprlock/hyprlock.conf'
+alias htwgVPN='sudo openvpn --config ~/.vpn/HTWG-MFA-SOSE25-STUD.ovpn'
 #alias code="code --enable-features=WaylandWindowDecorations --ozone-platform=wayland"
 PS1='[\u@\h \W]\$ '
 

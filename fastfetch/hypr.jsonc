@@ -1,106 +1,138 @@
-//   _____ _____ _____ _____ _____ _____ _____ _____ _____ 
+//   _____ _____ _____ _____ _____ _____ _____ _____ _____
 //  |   __|  _  |   __|_   _|   __|   __|_   _|     |  |  |
 //  |   __|     |__   | | | |   __|   __| | | |   --|     |
 //  |__|  |__|__|_____| |_| |__|  |_____| |_| |_____|__|__|  HYPRLAND
 //
-//  by Bina
-
+//  by Ben
 
 {
-    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
-    "logo": {
-    	"source": "~/.config/fastfetch/images/archlinux.png",
-    	"type": "kitty",
-    	"height": 18,
-    	"padding": {
-    		"top": 2
-    	}
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json", // JSON-Schema für Validierung & Autovervollständigung
+  "logo": {
+    "source": "~/.config/fastfetch/images/archlinux.png", // Pfad zum Logo (z. B. Arch-Logo als PNG)
+    "type": "kitty", // Bildanzeige im Kitty-kompatiblen Terminal
+    "height": 18,
+    "padding": {
+      "top": 2
+    }
+  },
+  "display": {
+    "separator": " " // Leerzeichen zwischen Schlüsseln und Werten
+  },
+  "modules": [
+    "break", // Leerzeile für Abstand
+    "break",
+    "break",
+
+    // Farbige Punktreihe (Kosmetisch, nice touch!)
+    {
+      "type": "custom",
+      "format": "\u001b[90m  \u001b[31m  \u001b[32m  \u001b[33m  \u001b[34m  \u001b[35m  \u001b[36m  \u001b[37m"
     },
-    "display": {
-        "separator": " "
+
+    "break",
+
+    {
+      "type": "title", // Zeigt den Hostnamen/Benutzernamen oben an
+      "keyWidth": 10
     },
-    "modules": [
-	"break",
-        "break",
-        "break",
-	{
-            "type": "custom",
-            "format": "\u001b[90m  \u001b[31m  \u001b[32m  \u001b[33m  \u001b[34m  \u001b[35m  \u001b[36m  \u001b[37m"
-        },
-	"break",
-	{
-            "type": "title",
-            "keyWidth": 10
-        },
-        "break",
-        {
-            "type": "os",
-            "key": " ",
-            "keyColor": "34",  // = color4
-        },
-        {
-            "type": "kernel",
-            "key": " ",
-            "keyColor": "34",
-        },
-        {
-            "type": "packages",
-            "format": "{} (pacman)",
-            "key": " ",
-            "keyColor": "34",  
-        },
-        {
-            "type": "shell",
-            "key": " ",
-            "keyColor": "34", 
-        },
-        {
-            "type": "terminal",
-            "key": " ",
-            "keyColor": "34", 
-        },
-        {
-            "type": "wm",
-            "key": " ",
-            "keyColor": "34", 
-        },
-        {
-            "type": "cursor",
-            "key": " ",
-            "keyColor": "34", 
-        },
-        {
-            "type": "terminalfont",
-            "key": " ",
-            "keyColor": "34", 
-        },
-        {
-            "type": "uptime",
-            "key": " ",
-            "keyColor": "34", 
-        },
-        {
-            "type": "datetime",
-            "format": "{1}-{3}-{11}",
-            "key": " ",
-            "keyColor": "34", 
-        },
-        {
-            "type": "media",
-            "key": "󰝚 ",
-            "keyColor": "34", 
-        },
-        {
-            "type": "player",
-            "key": " ",
-            "keyColor": "34", 
-        },
-        "break",
-        {
-            "type": "custom",
-            "format": "\u001b[90m  \u001b[31m  \u001b[32m  \u001b[33m  \u001b[34m  \u001b[35m  \u001b[36m  \u001b[37m"
-        },
-        "break",
-        "break",
-    ]
+
+    "break",
+
+    // OS-Erkennung (z. B. "Arch Linux")
+    {
+      "type": "os",
+      "key": " ", // Arch Icon
+      "keyColor": "34" // Blau
+    },
+
+    // Kernel-Version (uname -r)
+    {
+      "type": "kernel",
+      "key": " ",
+      "keyColor": "34"
+    },
+
+    // Anzahl installierter Pakete (hier nur pacman)
+    {
+      "type": "packages",
+      "format": "{} (pacman)",
+      "key": " ",
+      "keyColor": "34"
+    },
+
+    // Aktuell genutzte Shell (z. B. bash, zsh, fish)
+    {
+      "type": "shell",
+      "key": " ",
+      "keyColor": "34"
+    },
+
+    // Terminal-Emulator (kitty, foot, etc.)
+    {
+      "type": "terminal",
+      "key": " ",
+      "keyColor": "34"
+    },
+
+    // Fenster-Manager oder Compositor (Hyprland)
+    {
+      "type": "wm",
+      "key": " ",
+      "keyColor": "34"
+    },
+
+    // Cursor-Theme
+    {
+      "type": "cursor",
+      "key": " ",
+      "keyColor": "34"
+    },
+
+    // Terminal-Schriftart
+    {
+      "type": "terminalfont",
+      "key": " ",
+      "keyColor": "34"
+    },
+
+    // Uptime seit Boot
+    {
+      "type": "uptime",
+      "key": " ",
+      "keyColor": "34"
+    },
+
+    // Datum in eigenem Format (z. B. Jahr-Monat-Tag)
+    {
+      "type": "datetime",
+      "format": "{1}-{3}-{11}",
+      "key": " ",
+      "keyColor": "34"
+    },
+
+    // Lautstärke / Audio-Device
+    {
+      "type": "media",
+      "key": "󰝚 ",
+      "keyColor": "34"
+    },
+
+    // Aktueller Mediaplayer + Song (z. B. Spotify)
+    {
+      "type": "player",
+      "key": " ",
+      "keyColor": "34"
+    },
+
+    "break",
+
+    // Wieder dieselben farbigen Punkte unten
+    {
+      "type": "custom",
+      "format": "\u001b[90m  \u001b[31m  \u001b[32m  \u001b[33m  \u001b[34m  \u001b[35m  \u001b[36m  \u001b[37m"
+    },
+
+    "break",
+    "break"
+  ]
 }

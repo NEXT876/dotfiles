@@ -113,7 +113,8 @@
     "format-alt": "<span size='13000' foreground='#B1E3AD'>{icon} </span> {time}",
     "format-full": "<span size='13000' foreground='#B1E3AD'> </span>{capacity}%",
     "format-icons": ["", "", "", "", ""],
-    "tooltip-format": "{time}"
+    "tooltip-format": "{time}",
+    "on-update": "bash -c 'cap=$(cat /sys/class/power_supply/BAT*/capacity); marker=/tmp/low_batt_warned; if [ $cap -le 15 ] && [ ! -f $marker ]; then notify-send -u critical \"Batterie schwach\" \"Nur noch $cap% übrig\"; touch $marker; elif [ $cap -gt 20 ] && [ -f $marker ]; then rm $marker; fi'"
   },
 
   // Uhrzeit und Datum

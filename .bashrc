@@ -1,52 +1,64 @@
-#
-# ~/.bashrc
-#
+# Source global definitions
+[ -f /etc/bashrc ] && source /etc/bashrc
 
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
+# cd aliase
+alias bsys='cd /home/bwaibel/Dokumente/HTWG-Konstanz-Aufgaben/3.Semester/BSYS/'
+alias SE='cd /home/bwaibel/Dokumente/HTWG-Konstanz-Aufgaben/3.Semester/Sofware_Engeneering/'
+alias werwolf='cd /home/bwaibel/Dokumente/GitHub/werwolf'
 
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
-alias hyprlock='hyprlock --config ~/.config/hypr/hyprlock/hyprlock.conf'
-alias htwgVPN='sudo openvpn --config ~/.vpn/HTWG-MFA-SOSE25-STUD.ovpn'
-#alias code="code --enable-features=WaylandWindowDecorations --ozone-platform=wayland"
-PS1='[\u@\h \W]\$ '
+#git alias
+alias cleanup="git fetch --all --prune && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -D"
 
 
-###################
-##bash extensions##
-###################
 
-#Ble.sh
-source /usr/share/blesh/ble.sh
-
-#zoxide
+# zoxide
 eval "$(zoxide init bash)"
 
-
-# starship
-#colorscript -e 45 # tipe colorscript --help #komische muster
+# Starship Prompt
 eval "$(starship init bash)"
 
-#bash completion
-if [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
+# ble.sh
+[ -f ~/.local/share/blesh/ble.sh ] && source ~/.local/share/blesh/ble.sh
+
+# User-specific PATH
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
+export PATH
 
-#fzf
-source /usr/share/fzf/key-bindings.bash
-source /usr/share/fzf/completion.bash
-# ctrl+r (suche in history)	ctrl+T (suche in dateien)
+#scala
+export PATH="$PATH:$HOME/.local/share/coursier/bin"
 
-
-
-#####################
-#####################
-
-bind 'set enable-bracketed-paste on'
-
-# Ignoriere doppelte Befehle und Befehle mit Leerzeichen am Anfang
+# History-Optimierung
 export HISTCONTROL=ignoreboth:erasedups
 
-fastfetch -c .config/fastfetch/archlogo.jsonc
+# Enable safe paste mode
+#bind 'set enable-bracketed-paste on'
+
+# Kitty Shell Integration
+#[ -n "$KITTY_SHELL_INTEGRATION" ] && source <(kitty + complete setup bash)
+
+# User-specific aliases & functions
+#if [ -d ~/.bashrc.d ]; then
+#   for rc in ~/.bashrc.d/*; do
+#      [ -f "$rc" ] && source "$rc"
+# done
+#fi
+#unset rc
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+#__conda_setup="$('/home/bwaibel/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+#if [ $? -eq 0 ]; then
+#    eval "$__conda_setup"
+#else
+#    if [ -f "/home/bwaibel/anaconda3/etc/profile.d/conda.sh" ]; then
+#        . "/home/bwaibel/anaconda3/etc/profile.d/conda.sh"
+#    else
+#        export PATH="/home/bwaibel/anaconda3/bin:$PATH"
+#    fi
+#fi
+#unset __conda_setup
+# <<< conda initialize <<<
+
 

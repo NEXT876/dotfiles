@@ -1,14 +1,11 @@
 # Source global definitions
 [ -f /etc/bashrc ] && source /etc/bashrc
 
-# cd aliase
-alias bsys='cd /home/bwaibel/Dokumente/HTWG-Konstanz-Aufgaben/3.Semester/BSYS/'
-alias SE='cd /home/bwaibel/Dokumente/HTWG-Konstanz-Aufgaben/3.Semester/Sofware_Engeneering/'
-alias werwolf='cd /home/bwaibel/Dokumente/GitHub/werwolf'
+# wallpaper wechseln
+alias wallpaper='cd /home/benw/Bilder/Wallpaper && ./wallpaper_change.sh choice'
 
 #git alias
 alias cleanup="git fetch --all --prune && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -D"
-
 
 
 # zoxide
@@ -45,20 +42,3 @@ export HISTCONTROL=ignoreboth:erasedups
 # done
 #fi
 #unset rc
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-#__conda_setup="$('/home/bwaibel/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-#if [ $? -eq 0 ]; then
-#    eval "$__conda_setup"
-#else
-#    if [ -f "/home/bwaibel/anaconda3/etc/profile.d/conda.sh" ]; then
-#        . "/home/bwaibel/anaconda3/etc/profile.d/conda.sh"
-#    else
-#        export PATH="/home/bwaibel/anaconda3/bin:$PATH"
-#    fi
-#fi
-#unset __conda_setup
-# <<< conda initialize <<<
-
-

@@ -4,7 +4,7 @@
   "position": "top", // Leiste am oberen Bildschirmrand
   //"mode": "dock",                     // Optionaler Dock-Modus (auskommentiert)
   "exclusive": true, // Reserviert Bildschirmplatz, verhindert Überlappung
-  "passtrough": false, // Mausereignisse werden nicht weitergeleitet
+  "passthrough": false, // Mausereignisse werden nicht weitergeleitet
   "gtk-layer-shell": true, // Unterstützung für gtk-layer-shell
   "height": 0, // Automatische Höhe
 
@@ -22,7 +22,7 @@
   // Rechte Seite mit Systeminformationen
   "modules-right": [
     "network", // Netzwerkstatus
-    "custom/volume", // Lautstärkeregelung
+    "wireplumber", // Lautstärkeregelung
     "bluetooth", // Bluetooth-Status
     "custom/brightness", // Bildschirmhelligkeit
     "battery", // Akkustand
@@ -125,25 +125,20 @@
     "interval": 1
   },
 
-  // Lautstärkeanzeige mit eigenem Script
-  "custom/volume": {
-    "format": "  {text}%",
-    "exec": "~/.config/waybar/scripts/volume.sh",
-    "interval": 1,
-    "on-click": "~/.config/waybar/scripts/volume_slider.sh",
-    "on-scroll-up": "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+",
-    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+  // Lautstärke (eingebautes WirePlumber-Modul)
+  "wireplumber": {
+    "format": "  {volume}%",
+    "format-muted": " muted",
+    "scroll-step": 5,
+    "max-volume": 150,
+    "on-click": "pavucontrol",
+    "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
   },
 
-  // Bluetooth-Modul mit Statusscript
+  // Bluetooth (eingebautes Modul)
   "bluetooth": {
-    "format": " {status}",
-    "return-type": "json",
-    "exec": "~/.config/waybar/scripts/bluetooth-status.sh",
-    "exec-if": "command -v bluetoothctl",
+    "format": " {status}",
     "on-click": "blueman-manager",
-    "interval": 5,
-    "replace-straight-quotes": true,
     "tooltip": false
   },
 

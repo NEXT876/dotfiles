@@ -2,17 +2,17 @@
 [ -f /etc/bashrc ] && source /etc/bashrc
 
 # wallpaper wechseln
-alias wallpaper='cd /home/benw/Bilder/Wallpaper && ./wallpaper_change.sh choice'
+alias wallpaper='cd ~/Bilder/Wallpaper && ./wallpaper_change.sh choice'
 
 #git alias
 alias cleanup="git fetch --all --prune && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -D"
 
 
 # zoxide
-eval "$(zoxide init bash)"
+command -v zoxide >/dev/null && eval "$(zoxide init bash)"
 
 # Starship Prompt
-eval "$(starship init bash)"
+command -v starship >/dev/null && eval "$(starship init bash)"
 
 # ble.sh
 [ -f ~/.local/share/blesh/ble.sh ] && source ~/.local/share/blesh/ble.sh
